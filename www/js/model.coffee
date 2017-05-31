@@ -8,18 +8,20 @@ angular.module 'starter.model', ['PageableAR', 'ngFileSaver', 'ngFileUpload']
 	.factory 'model', (pageableAR, $http, $filter, $log, FileSaver, Upload, $state) ->
 
 		class User extends pageableAR.Model
-			$urlRoot: "org/api/users/"
-				
+			$idAttribute: 'username'
+			$urlRoot: "api/user"
+			
+			_me = null
+		
 			@me: ->
-				(new User(username: 'me/')).$fetch()	
+				_me ?= new User username: 'me'		
 		
 		# Db model
 		class Db extends pageableAR.Model
 			$urlRoot: "api/db"
 			
 			cfg: ->
-				mongourl = env.mongo.url.split("/")
-				JSON.stringify {url:"#{mongourl.slice(0, mongourl.length - 1).join('/')}/#{@.name}", updatedAt:@.updatedAt}
+				JSON.stringify {url:"#{env.mongo.url}#{@.name}", updatedAt:@.updatedAt}
 			cmd: (op, files)->
 				if op == "import"
 					if files.length!=0

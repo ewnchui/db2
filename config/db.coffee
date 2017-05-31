@@ -5,6 +5,7 @@ _.forEach ['ADMIN_DB','ADMIN_ROLE'], (prop) ->
   	throw new Error "process.env.#{prop} not yet defined"
 
 module.exports =
+	hookTimeout: 40000
 	dbAdmin:
 		url:		process.env.ADMIN_DB
 	db:

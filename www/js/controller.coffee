@@ -26,8 +26,9 @@ angular
 					.catch (err) ->
 						alert {data:{error:"Name already exists. Please choose other name."}}
 						
-	.controller 'DbListCtrl', ($scope, collection, $location, $ionicPopup) ->
+	.controller 'DbListCtrl', ($scope, collection, $location, $ionicPopup, me) ->
 		_.extend $scope,
+			me: me
 			collection: collection
 			create: ->
 				$location.url "/db/create"

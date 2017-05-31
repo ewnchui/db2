@@ -10,3 +10,7 @@ module.exports =
 			destroy:	['isAuth', 'isOwner']
 			export:		['isAuth', 'isOwner']
 			import:		['isAuth', 'isOwner']
+		UserController:
+			'*': false
+			find:		true
+			findOne:	['isAuth', 'user/me']

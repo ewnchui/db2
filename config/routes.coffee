@@ -1,5 +1,13 @@
 module.exports = 
-	routes: 
+	routes:
+		'GET /api/user':
+			controller:		'UserController'
+			action:			'find'
+			sort:
+				email:	'desc'
+		'GET /api/user/:id':
+			controller:		'UserController'
+			action: 		'findOne'
 		'GET /api/db/me':
 			controller:		'DbController'
 			action:			'findByMe'

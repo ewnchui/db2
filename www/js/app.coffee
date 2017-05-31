@@ -39,7 +39,9 @@ angular
 					templateUrl: "templates/db/list.html"
 					controller: 'DbListCtrl'
 			resolve:
-				cliModel: 'model'	
+				cliModel: 'model'
+				me: (cliModel) ->
+					ret = cliModel.User.me().$fetch()
 				collection: (cliModel) ->
 					ret = new cliModel.DbList()
 					ret.$fetch()
@@ -52,7 +54,9 @@ angular
 					templateUrl: "templates/db/myList.html"
 					controller: 'DbListCtrl'
 			resolve:
-				cliModel: 'model'	
+				cliModel: 'model'
+				me: (cliModel) ->
+					ret = cliModel.User.me().$fetch()
 				collection: (cliModel) ->
 					ret = new cliModel.MyDbList()
 					ret.$fetch()				
